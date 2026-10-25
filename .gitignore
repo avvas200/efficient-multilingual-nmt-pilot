@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+*.egg-info/
+build/
+dist/
+
+# Environments
+.venv/
+venv/
+env/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Local data (don't ship these)
+*.pth
+*.bin
+*.safetensors
+model_cache/
+
+# Credentials — NEVER commit
+.env
+*.pem
+*_token*
+hf_token.txt
