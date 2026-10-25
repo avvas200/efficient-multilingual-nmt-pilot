@@ -1,0 +1,7 @@
+run_id,model_key,model_name,arch,precision,src_lang,tgt_lang,direction,n_samples,bleu,chrf,total_seconds,sec_per_sentence,gpu_mem_gb
+2026-10-23_0054,nllb-1.3b,facebook/nllb-200-distilled-1.3B,seq2seq,fp16,yor,eng,yor-eng,1012,20.54,44.55,153.6,0.152,4.94
+2026-10-23_0054,nllb-1.3b,facebook/nllb-200-distilled-1.3B,seq2seq,fp16,eng,yor,eng-yor,1012,4.97,25.67,306.4,0.303,5.1
+2026-10-23_0054,qwen-1.5b,Qwen/Qwen2.5-1.5B-Instruct,causal,fp16,yor,eng,yor-eng,1012,2.82,22.9,406.8,0.402,6.21
+2026-10-23_0054,qwen-1.5b,Qwen/Qwen2.5-1.5B-Instruct,causal,fp16,eng,yor,eng-yor,1012,0.67,12.74,1336.2,1.32,6.21
+2026-10-23_0054,aya-8b,CohereForAI/aya-23-8B,causal,fp16,yor,eng,yor-eng,1012,2.68,19.88,1516.6,1.499,19.81
+2026-10-23_0054,aya-8b,CohereForAI/aya-23-8B,causal,fp16,eng,yor,eng-yor,1012,0.2,5.27,2885.0,2.851,19.81
