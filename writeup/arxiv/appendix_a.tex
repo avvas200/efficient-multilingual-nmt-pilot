@@ -1,0 +1,62 @@
+% Generated from results/combined_all.csv -- do not edit by hand.
+\begin{longtable}{llcrrrrrr}
+\caption{Full per-direction results for all evaluated configurations on FLORES-200 devtest (1{,}012 sentences per direction). ``Len.\ ratio'' is hypothesis-to-reference length ratio; ``s/sent'' is wall-clock inference time per sentence. Dashes mark metrics not recorded by the Yoruba extension run.}\label{tab:appendix} \\
+\toprule
+Model & Prec. & Direction & BLEU & spBLEU & chrF & chrF++ & Len. ratio & s/sent \\
+\midrule
+\endfirsthead
+\multicolumn{9}{l}{\footnotesize\itshape Table \thetable\ continued from previous page.} \\
+\toprule
+Model & Prec. & Direction & BLEU & spBLEU & chrF & chrF++ & Len. ratio & s/sent \\
+\midrule
+\endhead
+\midrule
+\multicolumn{9}{r}{\footnotesize\itshape Continued on next page.} \\
+\endfoot
+\bottomrule
+\endlastfoot
+Qwen2.5-1.5B & FP16 & hau$\rightarrow$eng & 3.30 & 4.96 & 23.28 & 20.98 & 1.038 & 0.085 \\
+ & FP16 & eng$\rightarrow$hau & 1.09 & 1.56 & 16.85 & 14.59 & 0.846 & 0.163 \\
+ & FP16 & swh$\rightarrow$eng & 4.02 & 5.23 & 24.19 & 22.00 & 0.983 & 0.080 \\
+ & FP16 & eng$\rightarrow$swh & 1.97 & 3.05 & 24.39 & 21.55 & 1.132 & 0.167 \\
+ & FP16 & yor$\rightarrow$eng & 2.82 & -- & 22.90 & -- & -- & 0.402 \\
+ & FP16 & eng$\rightarrow$yor & 0.67 & -- & 12.74 & -- & -- & 1.320 \\
+ & INT8 & hau$\rightarrow$eng & 3.55 & 5.20 & 23.33 & 21.01 & 1.032 & 0.319 \\
+ & INT8 & eng$\rightarrow$hau & 1.06 & 1.83 & 18.91 & 16.31 & 0.858 & 0.680 \\
+ & INT8 & swh$\rightarrow$eng & 3.99 & 5.24 & 24.16 & 21.93 & 0.972 & 0.320 \\
+ & INT8 & eng$\rightarrow$swh & 1.71 & 2.82 & 24.09 & 21.21 & 1.129 & 0.725 \\
+ & INT4 & hau$\rightarrow$eng & 3.29 & 4.97 & 22.49 & 20.25 & 1.061 & 0.113 \\
+ & INT4 & eng$\rightarrow$hau & 1.35 & 1.91 & 17.33 & 15.06 & 0.811 & 0.206 \\
+ & INT4 & swh$\rightarrow$eng & 3.66 & 4.87 & 23.46 & 21.24 & 1.008 & 0.113 \\
+ & INT4 & eng$\rightarrow$swh & 2.05 & 3.10 & 23.34 & 20.57 & 1.093 & 0.212 \\
+\midrule
+Aya-23-8B & FP16 & hau$\rightarrow$eng & 3.27 & 4.83 & 23.35 & 21.15 & 1.246 & 0.504 \\
+ & FP16 & eng$\rightarrow$hau & 1.11 & 1.86 & 15.48 & 13.34 & 1.487 & 0.828 \\
+ & FP16 & swh$\rightarrow$eng & 6.92 & 8.84 & 29.73 & 27.86 & 1.184 & 0.486 \\
+ & FP16 & eng$\rightarrow$swh & 1.06 & 1.60 & 16.73 & 14.41 & 1.876 & 0.818 \\
+ & FP16 & yor$\rightarrow$eng & 2.68 & -- & 19.88 & -- & -- & 1.499 \\
+ & FP16 & eng$\rightarrow$yor & 0.20 & -- & 5.27 & -- & -- & 2.851 \\
+ & INT8 & hau$\rightarrow$eng & 3.66 & 5.22 & 23.12 & 21.01 & 1.219 & 0.998 \\
+ & INT8 & eng$\rightarrow$hau & 1.15 & 1.89 & 15.15 & 13.04 & 1.479 & 1.593 \\
+ & INT8 & swh$\rightarrow$eng & 6.66 & 8.51 & 29.45 & 27.57 & 1.173 & 0.897 \\
+ & INT8 & eng$\rightarrow$swh & 1.06 & 1.66 & 16.53 & 14.30 & 1.848 & 1.597 \\
+ & INT4 & hau$\rightarrow$eng & 2.82 & 4.55 & 22.23 & 20.07 & 1.205 & 0.652 \\
+ & INT4 & eng$\rightarrow$hau & 1.29 & 1.99 & 15.61 & 13.55 & 1.386 & 1.062 \\
+ & INT4 & swh$\rightarrow$eng & 6.20 & 7.97 & 27.54 & 25.68 & 1.145 & 0.624 \\
+ & INT4 & eng$\rightarrow$swh & 1.13 & 1.63 & 16.15 & 13.99 & 1.801 & 1.062 \\
+\midrule
+NLLB-1.3B & FP16 & hau$\rightarrow$eng & 33.22 & 35.08 & 56.08 & 54.69 & 0.963 & 0.032 \\
+ & FP16 & eng$\rightarrow$hau & 24.23 & 26.46 & 51.84 & 49.38 & 0.959 & 0.042 \\
+ & FP16 & swh$\rightarrow$eng & 41.63 & 43.37 & 63.77 & 62.46 & 0.963 & 0.032 \\
+ & FP16 & eng$\rightarrow$swh & 31.41 & 35.19 & 60.06 & 57.53 & 0.991 & 0.038 \\
+ & FP16 & yor$\rightarrow$eng & 20.54 & -- & 44.55 & -- & -- & 0.152 \\
+ & FP16 & eng$\rightarrow$yor & 4.97 & -- & 25.67 & -- & -- & 0.303 \\
+ & INT8 & hau$\rightarrow$eng & 33.26 & 35.11 & 56.11 & 54.70 & 0.964 & 0.170 \\
+ & INT8 & eng$\rightarrow$hau & 24.26 & 26.52 & 51.94 & 49.47 & 0.961 & 0.222 \\
+ & INT8 & swh$\rightarrow$eng & 41.65 & 43.38 & 63.78 & 62.47 & 0.962 & 0.168 \\
+ & INT8 & eng$\rightarrow$swh & 31.29 & 35.06 & 59.93 & 57.40 & 0.992 & 0.202 \\
+ & INT4 & hau$\rightarrow$eng & 33.60 & 35.21 & 56.08 & 54.73 & 0.971 & 0.050 \\
+ & INT4 & eng$\rightarrow$hau & 24.09 & 26.23 & 51.80 & 49.32 & 0.957 & 0.061 \\
+ & INT4 & swh$\rightarrow$eng & 41.69 & 43.23 & 63.66 & 62.36 & 0.963 & 0.049 \\
+ & INT4 & eng$\rightarrow$swh & 30.82 & 34.25 & 59.29 & 56.76 & 0.985 & 0.057 \\
+\end{longtable}

@@ -42,7 +42,8 @@ to preserve both quality and realistic latency on consumer hardware.
 ## 2. Preliminary Findings
 
 To establish feasibility and sharpen the research direction, I conducted
-an 8-week pilot study [GitHub: TODO-link]. The pilot evaluated three
+an 8-week pilot study [github.com/avvas200/efficient-multilingual-nmt-pilot].
+The pilot evaluated three
 model families — a small general LLM (Qwen2.5-1.5B), a larger instruction-
 tuned multilingual LLM (Aya-23-8B), and a dedicated multilingual MT model
 (NLLB-200-distilled-1.3B) — under three post-training compression regimes
@@ -54,9 +55,9 @@ T4) matching the hardware common in deployment contexts of interest.
 **Four preliminary findings emerged:**
 
 **(F1) Specialised MT models dominate general LLMs on low-resource
-translation.** NLLB-1.3B outperformed Aya-23-8B by **25.5 chrF** on
-hau→eng and **34.0 chrF** on eng→swh, despite being an order of
-magnitude smaller. The widely-reported trend of general-purpose LLMs
+translation.** NLLB-1.3B outperformed Aya-23-8B by **32.7 chrF** on
+hau→eng and **43.3 chrF** on eng→swh, despite being roughly a sixth
+the size. The widely-reported trend of general-purpose LLMs
 closing on specialised MT does not hold in this low-resource regime.
 
 **(F2) Modern post-training quantisation preserves aggregate quality
@@ -146,3 +147,9 @@ pilot are most consequential and least understood.
 
 [Add 3-5 more references specific to the supervisor's recent work —
 cite at least one of theirs by name.]
+weiyang liu
+[6]  POET-X: Memory-efficient LLM Training by Scaling Orthogonal Transformation,
+      Qiu, Zeju and Liu, Lixin and Weller, Adrian and Shi, Han and Liu, Weiyang, ICML,2026
+[7] Reparameterized LLM Training via Orthogonal Equivalence Transformation,
+      Qiu, Zeju and Buchholz, Simon and Xiao, Tim Z.and Dax, Maximilian and Sch\"olkopf, 
+        Bernhard and Liu, Weiyang, NeurIPS ,2025

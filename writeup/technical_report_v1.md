@@ -4,8 +4,17 @@
 **Author:** Abbas Sani
 **Affiliation:** Independent / Arewa Data Science / Aboki AI
 **Contact:** abbassani721@gmail.com
-**Code and data:** https://github.com/avvas200/pilot
-**Date:** [DRAFT — October 2026]
+**Code and data:** https://github.com/avvas200/efficient-multilingual-nmt-pilot
+**Date:** Draft, October 2026
+
+> **Superseded.** This is the original working draft. The authoritative
+> version is the arXiv preprint source in [`arxiv/`](arxiv/), which
+> corrects several numbers in this file (see
+> [`arxiv/SUBMISSION.md`](arxiv/SUBMISSION.md) for the full list). The
+> factual errors have been fixed here too, but the preprint is the
+> version to cite. Appendix B below is retained for reference only — it
+> was cut from the preprint because the per-sentence outputs behind it
+> are not in the repository.
 
 ## Abstract
 
@@ -18,7 +27,9 @@ multilingual MT model (NLLB-200-distilled-1.3B). Evaluating on the
 FLORES-200 devtest set (1,012 sentences per direction) under FP16,
 bitsandbytes INT8, and NF4 INT4 precisions on consumer-grade NVIDIA
 T4 GPUs, we find: (i) the specialised MT model outperforms both LLMs
-by 25–45 chrF, including the 8B instruction-tuned LLM; (ii) modern
+by 32.7–43.3 chrF on the Hausa and Swahili directions and by
+12.9–24.7 chrF on Yoruba, including against the 8B instruction-tuned
+LLM; (ii) modern
 post-training quantisation preserves aggregate translation quality
 within approximately 1 chrF across all model families and language
 directions; (iii) on consumer GPUs, INT8 and INT4 quantisation
@@ -139,10 +150,13 @@ Higher is better.**
 | NLLB-1.3B | INT8 | 56.11 | 51.94 | 63.78 | 59.93 | — | — |
 | NLLB-1.3B | INT4 | 56.08 | 51.80 | 63.66 | 59.29 | — | — |
 
-NLLB-1.3B outperforms Aya-23-8B by **25.5 chrF** on hau→eng,
-**34.0 chrF** on eng→swh, and **36.3 chrF** on eng→hau, despite being
-roughly a sixth of the size. The gap over Qwen-1.5B is of similar
-magnitude. For eng→yor specifically, Aya-23-8B produces chrF 5.27 —
+NLLB-1.3B outperforms Aya-23-8B by **32.73 chrF** on hau→eng,
+**36.36 chrF** on eng→hau, **34.04 chrF** on swh→eng, and
+**43.33 chrF** on eng→swh, despite being roughly a sixth of the size.
+The gap over Qwen-1.5B is of similar magnitude (32.80–39.58 chrF on
+the same four directions). On Yoruba the margins are smaller but still
+decisive: 24.67 chrF over Aya on yor→eng and 20.40 on eng→yor.
+For eng→yor specifically, Aya-23-8B produces chrF 5.27 —
 essentially non-functional output — confirming that the language is
 outside its training distribution.
 
@@ -217,16 +231,6 @@ natural extension of this study.
 | NLLB-1.3B | INT8 | 2.38 GB | 32% | 0.191 | 5.29× slower |
 | NLLB-1.3B | INT4 | 1.78 GB | 49% | 0.054 | 1.51× slower |
 
-Two patterns stand out. First, memory savings are substantial and
-reliable: 32–42% at INT8 and 49–61% at INT4, scaling with model size.
-For Aya-23-8B specifically, INT4 reduces memory from 17.1 GB to 6.6 GB,
-moving the model from "requires server GPU" to "fits comfortably on
-consumer hardware." Second, latency does *not* decrease — all
-quantised configurations are slower than FP16, with INT8 slowdowns ranged 
-from 1.9× (Aya-23-8B) to 5.3× (NLLB-1.3B), with the smaller models hit hardest
-in relative terms. This is attributable to the on-the-fly dequantisation overhead inherent to the bitsandbytes implementation on the T4 architecture. 
-Pre-packed-weight schemes such as GPTQ or AWQ may partially recover latency benefits and are a natural extension.
-
 ### 3.4 Resource gradient across languages
 
 For NLLB-1.3B at FP16, chrF on X→English descends monotonically:
@@ -241,7 +245,7 @@ further analysis is needed.
 ### 3.5 Model-specific observations
 
 **Aya-23-8B over-generates.** The hypothesis-to-reference length ratio
-for Aya ranged from 1.14 (hau→eng) to 1.88 (eng→swh). Compared with
+for Aya at FP16 ranged from 1.18 (swh→eng) to 1.88 (eng→swh). Compared with
 NLLB's near-unity ratios (0.96–0.99), Aya systematically produces
 longer outputs than the reference, consistent with its
 instruction-tuned behaviour not being adapted to concise translation
@@ -264,11 +268,13 @@ are absent, and the null quality-degradation finding may not generalise.
 sentence-level, written-language benchmark. Behaviour on noisier
 real-world text (social media, speech transcripts) may differ.
 
-**(L3) Statistical significance of small deltas not fully established.**
-Bootstrap confidence intervals computed on a subset of configurations
-suggest most compression deltas lie within noise, but a complete
-significance table is pending. We treat all deltas below ~1 chrF as
-inconclusive.
+**(L3) No statistical significance testing was performed.**
+Decoding is deterministic (greedy, beam size 1), so repeated runs of a
+given configuration produce identical output; the relevant uncertainty
+is sampling variance over the 1,012-sentence test set. Quantifying it
+requires a paired bootstrap over sentences, which we did not run. We
+therefore treat every delta in Table 2 as descriptive only, and draw no
+conclusion from differences below roughly 1 chrF.
 
 **(L4) Latency measurements are on a specific hardware configuration.**
 Our T4 results reflect consumer-GPU behaviour but do not generalise to
@@ -338,9 +344,11 @@ Qwen team, Cohere For AI (Aya), Meta AI (NLLB).
 
 ## Appendix A: Per-direction detailed results
 
-[Include your full `combined_all.csv` as a formatted table here, or
-link to it in the repo. Keep this appendix for anyone who wants
-every number.]
+Rendered in full in the preprint (Appendix A of
+[`arxiv/main.tex`](arxiv/main.tex), generated by
+`scripts/gen_appendix.py`). The machine-readable source is
+[`results/combined_all.csv`](../results/combined_all.csv), which also
+carries per-run library versions and hardware metadata.
 
 ## Appendix B: Qualitative Sample Outputs
 

@@ -1,13 +1,28 @@
-# Python 3.13.15 (Kaggle default)
-transformers==4.44.2
-bitsandbytes==0.43.3
-accelerate==0.34.2
+# Environment that actually produced the results in results/combined_all.csv.
+#
+# These versions are read from the per-run metadata columns recorded in
+# combined_all.csv (python / torch / transformers / bitsandbytes /
+# sacrebleu), not from the pins written at the top of the notebooks. The
+# notebooks pin older versions, but the Kaggle image and a later
+# `%pip install -U bitsandbytes` cell overrode them at runtime; the CSV
+# metadata is the authoritative record of what ran.
+#
+# Python 3.13.15
+# torch 2.11.0+cu128  (supplied by the Kaggle image; not pip-installed here)
+
+transformers==5.16.1
+bitsandbytes==0.50.2
+sacrebleu==2.6.0
 datasets==3.0.1
+
+# Versions not captured in the run metadata; these are the values pinned
+# in the notebooks and are believed correct, but are not independently
+# confirmed by the results file.
+accelerate==0.34.2
 evaluate==0.4.3
-sacrebleu==2.4.3
 sentencepiece==0.2.0
 
-# For bootstrap CI analysis (CPU, Colab)
+# Analysis of the released CSVs (CPU only — no GPU needed)
 pandas>=2.0.0
 numpy>=1.26.0
 
